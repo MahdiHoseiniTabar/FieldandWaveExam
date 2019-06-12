@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.support.v7.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,8 @@ public class ExamFragment extends Fragment {
     MyAdapter adapter;
     List<Question> questionList;
     FloatingActionButton fab;
+    SearchView searchView;
+    Repository repository;
 
     public static final String TAG = "examfragment";
 
@@ -63,7 +66,8 @@ public class ExamFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        questionList = Repository.getInstance().getQuestionList();
+        repository =  Repository.getInstance();
+        questionList =repository.getQuestionList();
         setHasOptionsMenu(true);
     }
 
@@ -110,8 +114,44 @@ public class ExamFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu, menu);
+        MenuItem myActionMenuItem = menu.findItem( R.id.search_menu);
+        searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                fab.hide();
+                Log.i(TAG, "onQueryTextSubmit: " + query);
+                updateUI(repository.search(query));
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        searchView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToWindow(View v) {
+                
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(View v) {
+                Log.i(TAG, "onViewDetachedFromWindow: ");
+                fab.show();
+                updateUI(questionList);
+            }
+        });
+
+    
         super.onCreateOptionsMenu(menu, inflater);
 
+    }
+
+    private void updateUI(List<Question> searchList) {
+        adapter.setQuestionList(searchList);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -148,6 +188,9 @@ public class ExamFragment extends Fragment {
 
         public MyAdapter(List<Question> questionList) {
             this.questionList = questionList;
+        }
+        public void setQuestionList(List<Question> list){
+            questionList = list;
         }
 
         @NonNull

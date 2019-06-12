@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:title="جستجو در سوالات"
         android:id="@+id/search_menu"
+        app:showAsAction="always|collapseActionView"
+        android:icon="@drawable/ic_action_serch"
+        app:actionViewClass="android.support.v7.widget.SearchView"
         />
     <item
         android:title="برو به"
-        android:id="@+id/goto_menu"/>
+        android:id="@+id/goto_menu"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_action_select"/>
 
 
 </menu>
