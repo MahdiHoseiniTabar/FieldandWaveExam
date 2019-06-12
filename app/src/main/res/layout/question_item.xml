@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="20dp"
+    android:elevation="20dp"
+    android:layout_margin="8dp">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="25sp"
+            android:text="sffdasfasfdsfsadfasfsdfsadsfsfsdfs
+sdfsdfsadfsdfsd
+sdfsdfsdf
+dsf
+das"
+            android:textColor="@color/colorAccent"
+            android:textAlignment="inherit"/>
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"
+            app:layout_constraintStart_toStartOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            android:layout_margin="2dp"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line">
+
+            <RadioButton
+                android:id="@+id/gozine1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="18sp"
+                android:text="gozi1"/>
+            <RadioButton
+                android:id="@+id/gozine2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="18sp"
+                android:text="gozi1"/>
+            <RadioButton
+                android:id="@+id/gozine3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="18sp"
+                android:text="gozi1"/>
+            <RadioButton
+                android:id="@+id/gozine4"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="18sp"
+                android:text="gozi1"/>
+        </RadioGroup>
+
+        <android.support.design.button.MaterialButton
+            android:id="@+id/materialButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="64dp"
+            android:text="تصحیح این سوال"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radio_group"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/text_tashih"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="گذینه ی 3 صحیح است"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radio_group"
+            android:textAlignment="center"
+            android:visibility="gone"
+            />
+    </android.support.constraint.ConstraintLayout>
+
+
+
+</android.support.design.card.MaterialCardView>
