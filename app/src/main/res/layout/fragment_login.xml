@@ -87,7 +87,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_marginTop="8dp"
                 android:hint="نام و نام خانوادگی"
                 android:textColorHint="@color/colorAccent"
                 app:hintAnimationEnabled="true"
@@ -114,8 +114,28 @@
                     android:id="@+id/editText_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                     />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-                    android:inputType="textPassword" />
+                android:hint="رمز ورود به آزمون"
+                android:textColorHint="@color/colorAccent"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTintMode="multiply"
+                app:passwordToggleContentDescription="نمایش رمز">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editText_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberPassword"
+                     />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.button.MaterialButton
@@ -130,10 +150,11 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:cornerRadius="20dp"
-                app:rippleColor="@color/colorPrimaryDark"
+                app:rippleColor="#00E676"
 
 
                 />
+
 
 
         </LinearLayout>

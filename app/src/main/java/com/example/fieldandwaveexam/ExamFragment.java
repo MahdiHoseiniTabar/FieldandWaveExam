@@ -67,8 +67,8 @@ public class ExamFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        repository =  Repository.getInstance();
-        questionList =repository.getQuestionList();
+        repository = Repository.getInstance();
+        questionList = repository.getQuestionList();
         setHasOptionsMenu(true);
     }
 
@@ -80,6 +80,11 @@ public class ExamFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler);
         fab = view.findViewById(R.id.float_button);
         submit = view.findViewById(R.id.text_submit);
+        if (!Mypref.IsEnded(getActivity()))
+            submit.setVisibility(View.VISIBLE);
+        else
+            submit.setVisibility(View.GONE);
+
         final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         if (adapter == null)
@@ -112,14 +117,14 @@ public class ExamFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BottomSheetFragment.newInstance("dsfsd", new BottomSheetFragment.CallbackToExamFragment() {
+                BottomSheetFragment.newInstance(new BottomSheetFragment.CallbackToExamFragment() {
                     @Override
                     public void check() {
                         updateUI(questionList);
 
                         Log.i(TAG, "check: ");
                     }
-                }).show(getFragmentManager(),"dsfsd");
+                }).show(getFragmentManager(), "dsfsd");
             }
         });
 
@@ -130,7 +135,7 @@ public class ExamFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu, menu);
-        MenuItem myActionMenuItem = menu.findItem( R.id.search_menu);
+        MenuItem myActionMenuItem = menu.findItem(R.id.search_menu);
         searchView = (SearchView) myActionMenuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -149,7 +154,7 @@ public class ExamFragment extends Fragment {
         searchView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
             @Override
             public void onViewAttachedToWindow(View v) {
-                
+
             }
 
             @Override
@@ -160,7 +165,7 @@ public class ExamFragment extends Fragment {
             }
         });
 
-    
+
         super.onCreateOptionsMenu(menu, inflater);
 
     }
@@ -205,7 +210,8 @@ public class ExamFragment extends Fragment {
         public MyAdapter(List<Question> questionList) {
             this.questionList = questionList;
         }
-        public void setQuestionList(List<Question> list){
+
+        public void setQuestionList(List<Question> list) {
             questionList = list;
         }
 
@@ -258,10 +264,11 @@ public class ExamFragment extends Fragment {
                 gozine4.setText(question.getGozine4());
 
 
+
                 radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
-                      //  button.setVisibility(View.VISIBLE);
+                        //  button.setVisibility(View.VISIBLE);
                         if (gozine1.isChecked()) {
                             question.setChoose("1");
                         } else if (gozine2.isChecked())
@@ -276,9 +283,12 @@ public class ExamFragment extends Fragment {
                 });
 
 
+
+
             }
-            public void checkAnswers(Question question){
-                switch (question.getChoose()){
+
+            public void checkAnswers(final Question question) {
+                switch (question.getChoose()) {
                     case "1":
                         gozine1.setChecked(true);
                         break;
@@ -294,11 +304,18 @@ public class ExamFragment extends Fragment {
                     default:
                         break;
                 }
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShowDescriptionDialog dialog=  ShowDescriptionDialog.newInstance(question.getId());
+                        dialog.show(getFragmentManager(),"sdfd");
+                    }
+                });
                 gozine1.setEnabled(false);
                 gozine2.setEnabled(false);
                 gozine3.setEnabled(false);
                 gozine4.setEnabled(false);
-                button.setVisibility(View.GONE);
+                button.setVisibility(View.VISIBLE);
                 radioGroup.setEnabled(false);
                 textView.setVisibility(View.VISIBLE);
 

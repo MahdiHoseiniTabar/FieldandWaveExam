@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoginFragment.Callback , BottomSheetFragment.CallBack {
+public class MainActivity extends AppCompatActivity implements LoginFragment.Callback, BottomSheetFragment.CallBack, ResultFragment.CallBackResult {
 
     DatabaseAccess databaseAccess;
     private FragmentManager fragmentManager;
@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Cal
             Log.i("exammm", "onCreate: ");
             databaseAccess.open();
             repository.setQuestionList(databaseAccess.getQuestions());
+            if (Mypref.IsFlage(this)) {
+                repository.insertQuestion();
+                Mypref.setFlag(this,false);
+            }
             databaseAccess.close();
         }
 
@@ -51,6 +55,14 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Cal
     public void goToResultPage() {
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_containar, ResultFragment.newInstance())
+                .addToBackStack("ddsdf")
+                .commit();
+    }
+
+    @Override
+    public void goToResult() {
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_containar, ExamFragment.newInstance())
                 .addToBackStack("ddsdf")
                 .commit();
     }

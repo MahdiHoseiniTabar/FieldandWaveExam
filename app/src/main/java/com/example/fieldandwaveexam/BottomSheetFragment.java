@@ -15,7 +15,6 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
     private static CallbackToExamFragment callbackToExamFragment;
     Button ok;
     Button cancel;
-    TextView title;
     View view;
     CallBack callBack;
 
@@ -38,11 +37,11 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
     interface CallbackToExamFragment{
         void check();
     }
-    public static BottomSheetFragment newInstance(String title,CallbackToExamFragment callbackToExamFragment) {
+    public static BottomSheetFragment newInstance(CallbackToExamFragment callbackToExamFragment) {
         BottomSheetFragment.callbackToExamFragment = callbackToExamFragment;
 
         Bundle args = new Bundle();
-        args.putString(TITLE,title);
+
         BottomSheetFragment fragment = new BottomSheetFragment();
         fragment.setArguments(args);
         return fragment;
@@ -54,14 +53,16 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
         view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_bottom_sheet, null);
         ok = view.findViewById(R.id.bottom_ok);
         cancel = view.findViewById(R.id.bottom_cancel);
-        title = view.findViewById(R.id.bottom_title);
 
-        title.setText(getArguments().getString(TITLE));
+
+
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Mypref.setIsended(getActivity(),true);
                 callbackToExamFragment.check();
+
                 callBack.goToResultPage();
                 dialog.dismiss();
             }

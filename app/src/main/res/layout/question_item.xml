@@ -32,7 +32,7 @@ sdfsdfsadfsdfsd
 sdfsdfsdf
 dsf
 das"
-            android:textColor="@color/colorAccent"
+            android:textColor="@android:color/black"
             android:textAlignment="inherit"/>
         <View
             android:id="@+id/line"
@@ -88,19 +88,21 @@ das"
 
         <android.support.design.button.MaterialButton
             android:id="@+id/materialButton"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="64dp"
-            android:text="تصحیح این سوال"
+            android:text="افزودن نکات"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            app:cornerRadius="15dp"
+            app:cornerRadius="18dp"
+            app:icon="@drawable/ic_action_add_note"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radio_group"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_tashih"
+            android:visibility="gone"
+            />
 
         <TextView
             android:id="@+id/text_tashih"
@@ -112,7 +114,6 @@ das"
             android:layout_marginBottom="8dp"
             android:text="گذینه ی 3 صحیح است"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/radio_group"

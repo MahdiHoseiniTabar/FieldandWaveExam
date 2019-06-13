@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
+import android.widget.FrameLayout;
 
 import java.security.PublicKey;
 
@@ -11,6 +12,7 @@ public class Mypref {
     public static final String NAME = "name of student";
     public static final String PASS = "PASS of student";
     public static final String ISENDED = "isended";
+    public static final String FLAG = "flag";
 
 
 
@@ -37,6 +39,12 @@ public class Mypref {
     }
     public static boolean IsEnded(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ISENDED,false);
+    }
+    public static void setFlag(Context context,boolean flag){
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(FLAG,flag).apply();
+    }
+    public static boolean IsFlage(Context context){
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(FLAG,true);
     }
 
 }

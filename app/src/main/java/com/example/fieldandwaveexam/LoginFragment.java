@@ -24,6 +24,7 @@ public class LoginFragment extends Fragment {
     TextView textView_teacher;
     EditText name;
     EditText password;
+    EditText pass;
     Button login;
     Typeface font;
     Callback callback;
@@ -69,6 +70,7 @@ public class LoginFragment extends Fragment {
         textView_uni = view.findViewById(R.id.course_title);
         name = view.findViewById(R.id.editText_name);
         password = view.findViewById(R.id.editText_password);
+        pass = view.findViewById(R.id.editText_pass);
         login = view.findViewById(R.id.button_signin);
         font = Typeface.createFromAsset(getActivity().getAssets(),"font/font.ttf");
 
@@ -80,14 +82,23 @@ public class LoginFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //activity call next fragment
-                 callback.next();
+                if (!name.getText().toString().isEmpty()&& !password.getText().toString().isEmpty() ) {
+                    if (pass.getText().toString().equals("8181")) {
+                        //activity call next fragment
+                        callback.next();
 
-                Mypref.setName(getActivity(),name.getText().toString());
-                Mypref.setPass(getActivity(),password.getText().toString());
-                Mypref.setIsended(getActivity(),false);
+                        Mypref.setName(getActivity(), name.getText().toString());
+                        Mypref.setPass(getActivity(), password.getText().toString());
+                        Mypref.setIsended(getActivity(), false);
 
-                Toast.makeText(getActivity(), name.getText().toString() + " خوش آمدید!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), name.getText().toString() + " خوش آمدید!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "رمز وارد شده نادرست است!", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(getActivity(), "لطفا موارد خواسته شده را پر کنید!", Toast.LENGTH_SHORT).show();
+
+                }
 
             }
         });

@@ -4,23 +4,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:padding="8dp">
 
-    <TextView
-        android:id="@+id/bottom_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-
-        android:textColor="@color/design_default_color_primary_dark"
-        android:text="شما به 130 سوال پاسخ داده اید " />
 
     <TextView
         android:id="@+id/bottom_describ"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="آیا میخواهید آزمون پایان یابد؟"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:textAlignment="inherit"
         android:textColor="@android:color/black"
         android:textSize="25sp" />
@@ -37,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:background="@android:color/black"
             android:text="خیر"
