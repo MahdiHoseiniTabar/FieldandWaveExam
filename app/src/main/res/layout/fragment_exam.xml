@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,26 +11,45 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
 
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/float_button"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|right|end"
-        app:layout_anchor="@id/recycler"
-        app:layout_anchorGravity="bottom|right|end"
-        android:layout_margin="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/ic_action_arrow"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="8dp"
+        app:layout_anchor="@id/recycler"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_constraintBottom_toTopOf="@+id/text_submit"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/text_submit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:text="پایان آزمون"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</android.support.design.widget.CoordinatorLayout>
+
+
+</android.support.constraint.ConstraintLayout>

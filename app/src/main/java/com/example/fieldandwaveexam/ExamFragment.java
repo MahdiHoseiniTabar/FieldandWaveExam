@@ -47,6 +47,7 @@ public class ExamFragment extends Fragment {
     FloatingActionButton fab;
     SearchView searchView;
     Repository repository;
+    TextView submit;
 
     public static final String TAG = "examfragment";
 
@@ -78,6 +79,7 @@ public class ExamFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_exam, container, false);
         recyclerView = view.findViewById(R.id.recycler);
         fab = view.findViewById(R.id.float_button);
+        submit = view.findViewById(R.id.text_submit);
         final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         if (adapter == null)
@@ -104,6 +106,20 @@ public class ExamFragment extends Fragment {
                 if (((LinearLayoutManager) layoutManager).findLastVisibleItemPosition() != layoutManager.getItemCount() - 1)
                     fab.show();
                 super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetFragment.newInstance("dsfsd", new BottomSheetFragment.CallbackToExamFragment() {
+                    @Override
+                    public void check() {
+                        updateUI(questionList);
+
+                        Log.i(TAG, "check: ");
+                    }
+                }).show(getFragmentManager(),"dsfsd");
             }
         });
 
@@ -201,8 +217,9 @@ public class ExamFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
-
             myHolder.bind(questionList.get(i));
+            if (Mypref.IsEnded(getActivity()))
+                myHolder.checkAnswers(questionList.get(i));
         }
 
         @Override
@@ -244,7 +261,7 @@ public class ExamFragment extends Fragment {
                 radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        button.setVisibility(View.VISIBLE);
+                      //  button.setVisibility(View.VISIBLE);
                         if (gozine1.isChecked()) {
                             question.setChoose("1");
                         } else if (gozine2.isChecked())
@@ -259,27 +276,40 @@ public class ExamFragment extends Fragment {
                 });
 
 
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        gozine1.setEnabled(false);
-                        gozine2.setEnabled(false);
-                        gozine3.setEnabled(false);
-                        gozine4.setEnabled(false);
-                        button.setVisibility(View.GONE);
-                        radioGroup.setEnabled(false);
-                        textView.setVisibility(View.VISIBLE);
+            }
+            public void checkAnswers(Question question){
+                switch (question.getChoose()){
+                    case "1":
+                        gozine1.setChecked(true);
+                        break;
+                    case "2":
+                        gozine2.setChecked(true);
+                        break;
+                    case "3":
+                        gozine3.setChecked(true);
+                        break;
+                    case "4":
+                        gozine4.setChecked(true);
+                        break;
+                    default:
+                        break;
+                }
+                gozine1.setEnabled(false);
+                gozine2.setEnabled(false);
+                gozine3.setEnabled(false);
+                gozine4.setEnabled(false);
+                button.setVisibility(View.GONE);
+                radioGroup.setEnabled(false);
+                textView.setVisibility(View.VISIBLE);
 
-                        if (question.getChoose().equals(question.getAnswer())) {
-                            //true answer
-                            textView.setText("تبریک! گزینه ی درست را انتخاب کرده اید");
-                            textView.setTextColor(getResources().getColor(R.color.colorTrue));
-                        } else {
-                            textView.setText(String.format("متاسفانه گزینه ی %s صحیح است ", question.getAnswer()));
-                            textView.setTextColor(getResources().getColor(R.color.colorFalse));
-                        }
-                    }
-                });
+                if (question.getChoose().equals(question.getAnswer())) {
+                    //true answer
+                    textView.setText("تبریک! گزینه ی درست را انتخاب کرده اید");
+                    textView.setTextColor(getResources().getColor(R.color.colorTrue));
+                } else {
+                    textView.setText(String.format("متاسفانه گزینه ی %s صحیح است ", question.getAnswer()));
+                    textView.setTextColor(getResources().getColor(R.color.colorFalse));
+                }
             }
         }
     }

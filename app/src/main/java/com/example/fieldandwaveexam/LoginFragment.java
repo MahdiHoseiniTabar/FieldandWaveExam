@@ -80,12 +80,15 @@ public class LoginFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //activity call next fragment
+                 callback.next();
+
                 Mypref.setName(getActivity(),name.getText().toString());
                 Mypref.setPass(getActivity(),password.getText().toString());
+                Mypref.setIsended(getActivity(),false);
 
-                //activity call next fragment
                 Toast.makeText(getActivity(), name.getText().toString() + " خوش آمدید!", Toast.LENGTH_SHORT).show();
-                callback.next();
+
             }
         });
 

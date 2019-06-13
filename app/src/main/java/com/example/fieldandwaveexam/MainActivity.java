@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoginFragment.Callback {
+public class MainActivity extends AppCompatActivity implements LoginFragment.Callback , BottomSheetFragment.CallBack {
 
     DatabaseAccess databaseAccess;
     private FragmentManager fragmentManager;
@@ -43,6 +43,14 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Cal
     public void next() {
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_containar, ExamFragment.newInstance())
+                .addToBackStack("ddsdf")
+                .commit();
+    }
+
+    @Override
+    public void goToResultPage() {
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_containar, ResultFragment.newInstance())
                 .addToBackStack("ddsdf")
                 .commit();
     }

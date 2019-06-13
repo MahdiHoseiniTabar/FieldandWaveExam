@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ResultFragment">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_capture"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:text="نام و نام خانوادگی:"
+                android:textAlignment="inherit"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="سیبسیبلسسیبلیسبلبیس"
+                android:textAlignment="viewStart"
+                android:textColor="@color/design_default_color_primary_dark"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/text1" />
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:text="شماره دانشجویی: "
+                android:textAlignment="inherit"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/text_name" />
+
+            <TextView
+                android:id="@+id/text_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="student_number"
+                android:textAlignment="viewStart"
+                android:textColor="@color/design_default_color_primary_dark"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/text2"
+                app:layout_constraintStart_toStartOf="@+id/text_name"
+                app:layout_constraintTop_toBottomOf="@id/text2" />
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:text="تعداد سوالات صحیح: "
+                android:textAlignment="inherit"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/text_number" />
+
+            <TextView
+                android:id="@+id/text_solved"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="student_number"
+                android:textAlignment="viewStart"
+
+                android:textColor="@color/design_default_color_primary_dark"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/text_name"
+                app:layout_constraintTop_toBottomOf="@+id/text3" />
+
+            <TextView
+                android:id="@+id/text4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:text="تعداد سوالات غلط: "
+                android:textAlignment="inherit"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/text_solved" />
+
+            <TextView
+                android:id="@+id/text_unsolved"
+                android:layout_width="352dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="student_number"
+                android:textAlignment="viewStart"
+                android:textColor="@color/design_default_color_primary_dark"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/text_name"
+                app:layout_constraintTop_toBottomOf="@+id/text4" />
+
+            <TextView
+                android:id="@+id/text5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:text="درصد پاسخگویی:  "
+                android:textAlignment="inherit"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/text_unsolved" />
+
+            <TextView
+                android:id="@+id/text_percent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="student_number"
+                android:textAlignment="viewStart"
+                android:textColor="@color/design_default_color_primary_dark"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/text_name"
+                app:layout_constraintTop_toBottomOf="@+id/text5" />
+
+            <TextView
+                android:id="@+id/text6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:text="تعداد کل سوالات:"
+                android:textAlignment="inherit"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/text_percent" />
+
+            <TextView
+                android:id="@+id/text_all"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="student_number"
+                android:textAlignment="viewStart"
+                android:textColor="@color/design_default_color_primary_dark"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/text_name"
+                app:layout_constraintTop_toBottomOf="@+id/text6" />
+
+
+            <TextView
+                android:id="@+id/textView"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="کارنامه ی شما: "
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="28sp"
+                android:textStyle="bold|italic"
+                android:background="@drawable/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view4"
+                />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="18dp"
+
+                android:layout_marginEnd="18dp"
+                android:background="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView" />
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:background="@android:color/black"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+
+                android:background="@android:color/black"
+
+                app:layout_constraintBottom_toBottomOf="@+id/text_all"
+                app:layout_constraintRight_toLeftOf="@id/view"
+                app:layout_constraintTop_toTopOf="@id/view4" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@android:color/black"
+
+                app:layout_constraintBottom_toBottomOf="@+id/text_all"
+                app:layout_constraintLeft_toRightOf="@id/view"
+                app:layout_constraintTop_toTopOf="@id/view4" />
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@android:color/black"
+
+                app:layout_constraintLeft_toLeftOf="@id/view"
+                app:layout_constraintRight_toRightOf="@id/view3"
+                app:layout_constraintTop_toBottomOf="@id/text_all" />
+
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/button_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="#00C853"
+        android:padding="8dp"
+        android:text="مشاهده ی پاسخ سوالات"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/button_capture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:padding="8dp"
+        android:text="اسکرین شات از کارنامه"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/button_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
