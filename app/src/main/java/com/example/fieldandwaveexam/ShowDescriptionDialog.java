@@ -40,11 +40,16 @@ public class ShowDescriptionDialog extends DialogFragment {
         }
 
         final AlertDialog dialogg = new AlertDialog.Builder(getActivity())
-                .setPositiveButton("ADD", new DialogInterface.OnClickListener() {
+                .setPositiveButton("افزودن", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         repository.writeAnswer(quize, addText.getText().toString());
 
+                    }
+                }).setNegativeButton("لغو", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
                     }
                 })
                 .setView(view)

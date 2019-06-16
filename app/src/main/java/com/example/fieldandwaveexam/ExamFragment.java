@@ -3,13 +3,16 @@ package com.example.fieldandwaveexam;
 
 import android.animation.Animator;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -48,8 +51,26 @@ public class ExamFragment extends Fragment {
     SearchView searchView;
     Repository repository;
     TextView submit;
+    Call_back call_back;
+
+    interface Call_back {
+        void addToolbar();
+    }
 
     public static final String TAG = "examfragment";
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (call_back == null)
+            call_back = (Call_back) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        call_back = null;
+    }
 
     public static ExamFragment newInstance() {
 
@@ -69,6 +90,7 @@ public class ExamFragment extends Fragment {
         super.onCreate(savedInstanceState);
         repository = Repository.getInstance();
         questionList = repository.getQuestionList();
+        call_back.addToolbar();
         setHasOptionsMenu(true);
     }
 
@@ -81,9 +103,11 @@ public class ExamFragment extends Fragment {
         fab = view.findViewById(R.id.float_button);
         submit = view.findViewById(R.id.text_submit);
         if (!Mypref.IsEnded(getActivity()))
-            submit.setVisibility(View.VISIBLE);
-        else
-            submit.setVisibility(View.GONE);
+            submit.setEnabled(true);
+        else {
+            submit.setEnabled(false);
+
+        }
 
         final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -102,14 +126,20 @@ public class ExamFragment extends Fragment {
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0 || dy < 0 && fab.isShown())
+                if (dy > 0 && fab.isShown()) {
                     fab.hide();
+
+                    Log.i(TAG, "onScrolled: " + dy);
+                }
+
             }
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (((LinearLayoutManager) layoutManager).findLastVisibleItemPosition() != layoutManager.getItemCount() - 1)
+                if (((LinearLayoutManager) layoutManager).findLastVisibleItemPosition() != layoutManager.getItemCount() - 1) {
                     fab.show();
+
+                }
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
@@ -185,20 +215,32 @@ public class ExamFragment extends Fragment {
             final EditText number = view.findViewById(R.id.editText_number);
 
 
-            new AlertDialog.Builder(getActivity())
+            final AlertDialog dialog_search = new AlertDialog.Builder(getActivity())
                     .setView(view)
                     .setTitle("شماره سوالی که میخواهید را انتخاب کنید")
                     .setPositiveButton("برو به این سوال", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (Integer.valueOf(number.getText().toString()) <= questionList.size())
+                            if (!number.getText().toString().isEmpty() && Integer.valueOf(number.getText().toString()) <= questionList.size())
                                 recyclerView.scrollToPosition(Integer.valueOf(number.getText().toString()) - 1);
                             else
-                                Toast.makeText(getActivity(), "آزمون شامل 200 سوال است! لطفا در این بازه انتخاب کنید", Toast.LENGTH_LONG).show();
-
+                                Toast.makeText(getActivity(), "سوالی با این شماره موجود نیست!", Toast.LENGTH_LONG).show();
                         }
                     })
-                    .show();
+                    .setNegativeButton("لغو", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create();
+            dialog_search.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    dialog_search.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE);
+                }
+            });
+            dialog_search.show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -264,7 +306,6 @@ public class ExamFragment extends Fragment {
                 gozine4.setText(question.getGozine4());
 
 
-
                 radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -281,8 +322,6 @@ public class ExamFragment extends Fragment {
                             question.setChoose("0");
                     }
                 });
-
-
 
 
             }
@@ -307,8 +346,8 @@ public class ExamFragment extends Fragment {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ShowDescriptionDialog dialog=  ShowDescriptionDialog.newInstance(question.getId());
-                        dialog.show(getFragmentManager(),"sdfd");
+                        ShowDescriptionDialog dialog = ShowDescriptionDialog.newInstance(question.getId());
+                        dialog.show(getFragmentManager(), "sdfd");
                     }
                 });
                 gozine1.setEnabled(false);

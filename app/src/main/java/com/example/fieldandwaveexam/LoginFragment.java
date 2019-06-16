@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,18 +26,20 @@ public class LoginFragment extends Fragment {
     EditText name;
     EditText password;
     EditText pass;
-    Button login;
+    TextView login;
     Typeface font;
     Callback callback;
 
-    interface Callback{
+    interface Callback {
         void next();
+
+        void removeToolbar();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (callback == null){
+        if (callback == null) {
             callback = (Callback) context;
         }
     }
@@ -48,23 +51,27 @@ public class LoginFragment extends Fragment {
     }
 
     public static LoginFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         LoginFragment fragment = new LoginFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     public LoginFragment() {
         // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_login, container, false);
+
+        callback.removeToolbar();
+
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         textView_exam = view.findViewById(R.id.course_name);
         textView_teacher = view.findViewById(R.id.teacher);
         textView_uni = view.findViewById(R.id.course_title);
@@ -72,7 +79,7 @@ public class LoginFragment extends Fragment {
         password = view.findViewById(R.id.editText_password);
         pass = view.findViewById(R.id.editText_pass);
         login = view.findViewById(R.id.button_signin);
-        font = Typeface.createFromAsset(getActivity().getAssets(),"font/font.ttf");
+        font = Typeface.createFromAsset(getActivity().getAssets(), "font/font.ttf");
 
         textView_uni.setTypeface(font);
         textView_teacher.setTypeface(font);
@@ -82,7 +89,7 @@ public class LoginFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!name.getText().toString().isEmpty()&& !password.getText().toString().isEmpty() ) {
+                if (!name.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
                     if (pass.getText().toString().equals("8181")) {
                         //activity call next fragment
                         callback.next();
@@ -95,14 +102,23 @@ public class LoginFragment extends Fragment {
                     } else {
                         Toast.makeText(getActivity(), "رمز وارد شده نادرست است!", Toast.LENGTH_SHORT).show();
                     }
-                }else {
-                    Toast.makeText(getActivity(), "لطفا موارد خواسته شده را پر کنید!", Toast.LENGTH_SHORT).show();
-
+                } else {
+                    if (name.getText().toString().isEmpty()) {
+                        name.setError("این فیلد نمیتواند خالی باشد");
+                        if (name.requestFocus()) {
+                            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                        }
+                    }
+                    else {
+                        password.setError("این فیلد نمیتواند خالی باشد");
+                        if (password.requestFocus()) {
+                            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                        }
+                    }
                 }
 
             }
         });
-
 
 
         return view;

@@ -49,6 +49,7 @@ public class ResultFragment extends Fragment {
 
     interface CallBackResult {
         void goToResult();
+        void addToolbar();
     }
 
     @Override

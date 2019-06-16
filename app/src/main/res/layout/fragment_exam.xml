@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/text_submit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:fabCustomSize="70dp"
+        app:fabCustomSize="60dp"
         app:maxImageSize="30dp"
         android:src="@drawable/ic_action_arrow"
         android:backgroundTint="@color/colorPrimary"
@@ -37,7 +36,7 @@
         android:id="@+id/text_submit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:background="@drawable/button_background"
         android:textSize="20sp"
         android:textColor="@android:color/white"
         android:text="پایان آزمون"
@@ -46,7 +45,8 @@
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 
 

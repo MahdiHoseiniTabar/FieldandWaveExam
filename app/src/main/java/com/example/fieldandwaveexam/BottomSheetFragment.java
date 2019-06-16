@@ -3,6 +3,8 @@ package com.example.fieldandwaveexam;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,11 +61,23 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Mypref.setIsended(getActivity(),true);
-                callbackToExamFragment.check();
-
                 callBack.goToResultPage();
+                Mypref.setIsended(getActivity(),true);
+                new CountDownTimer(500,500){
+
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        callbackToExamFragment.check();
+                    }
+                };
+
+
+
                 dialog.dismiss();
             }
         });
