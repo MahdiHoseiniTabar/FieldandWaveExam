@@ -24,21 +24,24 @@
 
         android:orientation="horizontal">
 
-        <Button
+        <TextView
             android:id="@+id/bottom_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
+            android:padding="8dp"
+            android:textAlignment="center"
             android:layout_weight="1"
-            android:background="@android:color/black"
+            android:background="@drawable/button_background"
             android:text="خیر"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            />
 
-        <Button
+        <TextView
             android:id="@+id/bottom_ok"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,7 +50,9 @@
             android:layout_weight="1"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:background="@android:color/black"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:background="@drawable/button_background"
             android:text="بله"
             android:textColor="@android:color/white" />
 

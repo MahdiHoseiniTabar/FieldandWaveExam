@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Cal
             super.onPostExecute(aVoid);
             frameLayout.setVisibility(View.GONE);
 
-
         }
     }
 
@@ -100,7 +99,18 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Cal
     }
 
     @Override
-    public void goToResult() {
+    public void setUpMask() {
+        frameLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void clearMask() {
+        frameLayout.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    public void goBackToExam() {
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_containar, ExamFragment.newInstance())
                 .addToBackStack("ddsdf")

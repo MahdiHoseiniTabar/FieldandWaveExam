@@ -8,7 +8,9 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="20dp"
     android:elevation="20dp"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:backgroundTint="#EEEEEE"
+    >
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +28,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:text="sffdasfasfdsfsadfasfsdfsadsfsfsdfs
 sdfsdfsadfsdfsd
 sdfsdfsdf
@@ -61,28 +63,28 @@ das"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:textColor="@color/design_default_color_primary"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:text="gozi1"/>
             <RadioButton
                 android:id="@+id/gozine2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:textColor="@color/design_default_color_primary"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:text="gozi1"/>
             <RadioButton
                 android:id="@+id/gozine3"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:textColor="@color/design_default_color_primary"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:text="gozi1"/>
             <RadioButton
                 android:id="@+id/gozine4"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:textColor="@color/design_default_color_primary"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:text="gozi1"/>
         </RadioGroup>
 

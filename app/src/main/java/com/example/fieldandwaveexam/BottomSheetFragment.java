@@ -2,6 +2,7 @@ package com.example.fieldandwaveexam;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -15,8 +16,8 @@ import android.widget.Toast;
 public class BottomSheetFragment extends BottomSheetDialogFragment {
     public static final String TITLE = "title";
     private static CallbackToExamFragment callbackToExamFragment;
-    Button ok;
-    Button cancel;
+    TextView ok;
+    TextView cancel;
     View view;
     CallBack callBack;
 
@@ -25,6 +26,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
         super.onAttach(context);
         if (callBack == null)
             callBack = (CallBack) context;
+
     }
 
     @Override
@@ -35,6 +37,10 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
 
     interface CallBack{
         void goToResultPage();
+
+        void setUpMask();
+
+        void clearMask();
     }
     interface CallbackToExamFragment{
         void check();
@@ -56,29 +62,20 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
         ok = view.findViewById(R.id.bottom_ok);
         cancel = view.findViewById(R.id.bottom_cancel);
 
+            ok.setEnabled(true);
+            cancel.setEnabled(true);
 
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callBack.goToResultPage();
-                Mypref.setIsended(getActivity(),true);
-                new CountDownTimer(500,500){
+                
+                new ResultAsync().execute();
 
-                    @Override
-                    public void onTick(long millisUntilFinished) {
+                callBack.setUpMask();
+                ok.setEnabled(false);
+                cancel.setEnabled(false);
 
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        callbackToExamFragment.check();
-                    }
-                };
-
-
-
-                dialog.dismiss();
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +88,30 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
 
     }
 
+    class ResultAsync extends AsyncTask<Void,Void,Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            Mypref.setIsended(getActivity(),true);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            callBack.goToResultPage();
+            callBack.clearMask();
+            callbackToExamFragment.check();
+            getDialog().dismiss();
+        }
+    }
 
 
 }

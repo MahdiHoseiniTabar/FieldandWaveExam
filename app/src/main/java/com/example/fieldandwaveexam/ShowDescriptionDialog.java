@@ -11,6 +11,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ShowDescriptionDialog extends DialogFragment {
     private Repository repository;
@@ -44,6 +45,7 @@ public class ShowDescriptionDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         repository.writeAnswer(quize, addText.getText().toString());
+                        Toast.makeText(getActivity(), "اضافه شد", Toast.LENGTH_SHORT).show();
 
                     }
                 }).setNegativeButton("لغو", new DialogInterface.OnClickListener() {
@@ -59,6 +61,7 @@ public class ShowDescriptionDialog extends DialogFragment {
         @Override
         public void onShow(DialogInterface dialog) {
             dialogg.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE);
+            dialogg.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
         }
     });
         return dialogg;

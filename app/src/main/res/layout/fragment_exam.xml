@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+
         app:layout_constraintBottom_toTopOf="@+id/text_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,10 +26,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:fabCustomSize="60dp"
-        app:maxImageSize="30dp"
+        app:maxImageSize="25dp"
         android:src="@drawable/ic_action_arrow"
         android:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/text_submit"
+        app:layout_constraintBottom_toBottomOf="@id/recycler"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView

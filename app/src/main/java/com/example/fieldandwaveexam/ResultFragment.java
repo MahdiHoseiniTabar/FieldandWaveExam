@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -48,8 +49,8 @@ public class ResultFragment extends Fragment {
 
 
     interface CallBackResult {
-        void goToResult();
-        void addToolbar();
+        void goBackToExam();
+
     }
 
     @Override
@@ -109,7 +110,7 @@ public class ResultFragment extends Fragment {
         result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callBackResult.goToResult();
+                callBackResult.goBackToExam();
             }
         });
         captur.setOnClickListener(new View.OnClickListener() {
@@ -174,9 +175,8 @@ public class ResultFragment extends Fragment {
         }
     }
 
-    private void requestPermissionAndSave() {
 
 
-    }
+
 
 }

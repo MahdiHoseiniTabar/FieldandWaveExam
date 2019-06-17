@@ -105,7 +105,9 @@ public class ExamFragment extends Fragment {
         if (!Mypref.IsEnded(getActivity()))
             submit.setEnabled(true);
         else {
-            submit.setEnabled(false);
+
+            submit.setVisibility(View.GONE);
+            Log.i(TAG, "onCreateView: else gone ");
 
         }
 
@@ -124,15 +126,6 @@ public class ExamFragment extends Fragment {
         });
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0 && fab.isShown()) {
-                    fab.hide();
-
-                    Log.i(TAG, "onScrolled: " + dy);
-                }
-
-            }
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -200,6 +193,7 @@ public class ExamFragment extends Fragment {
 
     }
 
+
     private void updateUI(List<Question> searchList) {
         adapter.setQuestionList(searchList);
         adapter.notifyDataSetChanged();
@@ -238,6 +232,7 @@ public class ExamFragment extends Fragment {
                 @Override
                 public void onShow(DialogInterface dialog) {
                     dialog_search.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE);
+                    dialog_search.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
                 }
             });
             dialog_search.show();
@@ -265,6 +260,7 @@ public class ExamFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
+            myHolder.setIsRecyclable(false);
             myHolder.bind(questionList.get(i));
             if (Mypref.IsEnded(getActivity()))
                 myHolder.checkAnswers(questionList.get(i));
@@ -298,12 +294,28 @@ public class ExamFragment extends Fragment {
             }
 
             public void bind(final Question question) {
-                Log.i(TAG, "bind: ");
+                Log.i(TAG + ">>>", "bind: " +question.getChoose());
                 title.setText(question.getTitle());
                 gozine1.setText(question.getGozine1());
                 gozine2.setText(question.getGozine2());
                 gozine3.setText(question.getGozine3());
                 gozine4.setText(question.getGozine4());
+                switch (question.getChoose()) {
+                    case "1":
+                        gozine1.setChecked(true);
+                        break;
+                    case "2":
+                        gozine2.setChecked(true);
+                        break;
+                    case "3":
+                        gozine3.setChecked(true);
+                        break;
+                    case "4":
+                        gozine4.setChecked(true);
+                        break;
+                    default:
+                        break;
+                }
 
 
                 radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
